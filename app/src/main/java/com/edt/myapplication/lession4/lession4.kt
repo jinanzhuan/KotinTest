@@ -42,6 +42,7 @@ fun main(args: Array<String>) {
     button.click()
     button.showOff()
     button.setFocus(true)
+    println(newEval(NewExpr.Average(NewExpr.Num(4), NewExpr.Num(6))))
 }
 
 //=================================open,final和abstract修饰符================================
@@ -126,3 +127,82 @@ class SubButton: View {
     class ButtonState: State {}
 
 }
+
+//===============================密封类==================================
+
+interface Expr
+class Num(val value: Int): Expr
+class Sum(val left: Expr, val right: Expr): Expr
+
+/**
+ * 当使用when结构来执行表达式的时候，Kotlin编译器会强制检查默认选项。
+ * 如果你添加了一个新的子类，编译器并不能发现有地方改变了。如果你忘记了添加一个新分支，就会选择
+ * 默认的选择，这有可能导致潜在的bug。
+ */
+fun eval(e: Expr): Int=
+    when (e) {
+        is Num -> e.value
+        is Sum -> eval(e.left) + eval(e.right)
+        else -> throw IllegalArgumentException("Unkown expression")
+    }
+
+
+/**
+ * Kotlin为这个问题提供了一个解决方案：sealed类。为父类添加了sealed修饰符，对可能创建的子类做出严格的限制。所有的直接子类必须嵌套在父类中。
+ * sealed修饰符默认是open类，不需要再显式的添加open修饰符
+ */
+sealed class NewExpr {
+    class Num(val value: Int): NewExpr()
+    class Sum(val left: NewExpr, val right: NewExpr): NewExpr()
+    class Average(val left: NewExpr, val right: NewExpr): NewExpr()
+}
+
+/**
+ * 现在可以定义在外部，只要在同一个文件中即可
+ */
+class NewNum(val value: Int): NewExpr()
+
+fun newEval(e: NewExpr):Int =
+    when (e) {
+        is NewExpr.Num -> e.value
+        is NewExpr.Sum -> newEval(e.left) + newEval(e.right)
+        is NewExpr.Average -> (newEval(e.left) + newEval(e.right)) / 2
+        is NewNum -> e.value
+    }
+
+//============================================构造方法====================================
+/**
+ * 声明一个简单类
+ * 这段被括号围起来的语句块就叫作：主构造方法
+ * 有两个目的：表明构造方法的参数，以及定义使用这些参数初始化的属性
+ */
+class User(val nickname: String)
+
+/*class User constructor(_nickname: String) {
+    val nickname: String
+
+    *//**
+     * 初始化语句块，可以声明多个初始化语句块
+     *//*
+    init {
+        nickname = _nickname
+    }
+}*/
+
+//在上面的例子中，不需要把初始化代码放在初始化语句块汇总，因为它可以与nickname属性的声明结合。
+// 如果主构造方法没有注解或可见性修饰符，同样可以去掉constructor关键字
+
+/*
+class User(_nickname: String) {
+    val nickname = _nickname
+}
+*/
+
+//如果属性用响应的构造方法参数来初始化，代码可以通过把val关键字加载参数钱的方式来进行简化
+//val意味着相应的属性会用构造方法的参数来初始化
+/*
+class User(val nickname: String)*/
+/**
+ * 可以像函数参数一样为构造方法声明一个默认值
+ */
+class User2(val nickname: String, val isSubscribed: Boolean = true)
