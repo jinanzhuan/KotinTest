@@ -41,3 +41,26 @@ fun sendMyEmail() {
     email = null
     email?.let { sendEmail(it) }
 }
+
+class MyService {
+    fun performAction(): String = "foo"
+}
+
+class MyTest {
+    private lateinit var myService: MyService
+
+    @Before fun setUp() {
+        myService = MyService()
+    }
+
+    @Test fun testAction() {
+        Assert.assertEquals("foo", myService.performAction())
+//        Assert.assertEquals("foo", myService?.performAction())
+    }
+}
+
+fun verifyUserInput(input: String?) {
+    if (input.isNullOrBlank()) {
+        println("Please fill in the required fields")
+    }
+}
