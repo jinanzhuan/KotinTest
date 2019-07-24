@@ -19,6 +19,8 @@ fun main(args: Array<String>) {
     println(Payroll.allEmployees)
     println(CaseInsensitiveFileComparator.compare(File("/User"), File("/user")))
     A.bar()
+    User6.newFacebookUser("")
+    User6.newSubscribingUser("")
 }
 
 object Payroll {
@@ -68,5 +70,14 @@ class User6 private constructor(val nickname: String) {
 
             return ""
         }
+    }
+}
+
+//伴生对象是一个声明在类中的普通对象。它可以有名字，实现一个接口或者有扩展函数或属性。
+//假设你在工作在一个公司工资单的网站服务上，并且需要在对象和JSON之间序列化和反序列化，可以将序列化的逻辑放在伴生对象中。
+
+class Person3(val name: String) {
+    companion object Loader {
+        fun fromJSON(jsonText: String): Person3 = Person3("王五")
     }
 }
