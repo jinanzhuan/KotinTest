@@ -1,4 +1,4 @@
-package com.edt.myapplication.lession4
+package com.edt.myapplication.lessions.lession4
 
 import java.io.Serializable
 

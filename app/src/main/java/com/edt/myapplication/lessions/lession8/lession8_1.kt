@@ -1,4 +1,4 @@
-package com.edt.myapplication.lession8
+package com.edt.myapplication.lessions.lession8
 
 enum class Delivery {STANDARD, EXPEDITED}
 

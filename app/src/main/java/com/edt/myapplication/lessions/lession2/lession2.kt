@@ -1,4 +1,4 @@
-package com.edt.myapplication.lession2
+package com.edt.myapplication.lessions.lession2
 
 enum class Color {
     RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET

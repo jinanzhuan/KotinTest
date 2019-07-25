@@ -1,4 +1,4 @@
-package com.edt.myapplication.lession6
+package com.edt.myapplication.lessions.lession6
 
 
 /**

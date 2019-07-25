@@ -13,10 +13,25 @@ import android.support.v7.app.AppCompatActivity
  *     modify :
  * </pre>
  */
-open abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        initView()
+        initListener()
+        initData()
+    }
+
+    open fun initView() {
+        //
+    }
+
+    open fun initListener() {
+        //
+    }
+
+    open fun initData() {
+        //
     }
 
     abstract fun getLayoutId(): Int

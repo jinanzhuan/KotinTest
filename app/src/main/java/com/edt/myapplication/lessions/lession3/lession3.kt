@@ -1,4 +1,4 @@
-package com.edt.myapplication.lession3
+package com.edt.myapplication.lessions.lession3
 
 class User(val id: Int, val name: String, val address: String)
 

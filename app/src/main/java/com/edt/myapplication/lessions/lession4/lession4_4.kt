@@ -1,5 +1,7 @@
-package com.edt.myapplication.lession4
+package com.edt.myapplication.lessions.lession4
 
+import android.support.v7.app.AppCompatActivity
+import android.view.View
 import java.io.File
 
 /**
@@ -79,5 +81,17 @@ class User6 private constructor(val nickname: String) {
 class Person3(val name: String) {
     companion object Loader {
         fun fromJSON(jsonText: String): Person3 = Person3("王五")
+    }
+}
+
+//对象表达式：object关键字不仅仅能用来声明单例式对象，还能用来声明匿名对象
+
+class MyActivity: AppCompatActivity() {
+    fun initView() {
+        View(this).setOnClickListener (object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
     }
 }

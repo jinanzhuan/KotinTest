@@ -1,4 +1,4 @@
-package com.edt.myapplication.lession5
+package com.edt.myapplication.lessions.lession5
 
 
 /**
@@ -10,7 +10,7 @@ package com.edt.myapplication.lession5
  *     modify :
  * </pre>
  */
-fun main() {
+fun main(args: Array<String>) {
 
     val people = listOf(Person("name1", 25))
     val room = Room(people)
@@ -57,3 +57,5 @@ fun getMaxPerson(people: List<Person>) {
 fun getOldestPerson(people: List<Person>) {
 
 }
+
+//

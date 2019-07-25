@@ -1,10 +1,4 @@
-package com.edt.myapplication.lession5
-
-import android.content.Context
-import android.content.DialogInterface
-import android.util.AttributeSet
-import android.view.View
-import android.widget.Button
+package com.edt.myapplication.lessions.lession5
 
 fun alphabet(): String {
     val result = StringBuilder()
