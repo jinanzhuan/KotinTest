@@ -46,10 +46,22 @@ class MyService {
     fun performAction(): String = "foo"
 }
 
+//延迟初始化属性
+//1、延迟化属性用lateinit修饰
+//2、延迟话属性都是var,因为需要在构造方法外修改它的值，而val属性会被编译成必须在构造方法中初始化的final字段。
+//如果在属性倍初始化之前就访问了它，会得到这个异常“lateinit proerty myService has not been initialized"
+class MyTest {
+    private lateinit var myService: MyService
+}
 
-
+//isBlank是指判断是否包含空白字符串
+//isEmpty是指判断是否包含空字符串
 fun verifyUserInput(input: String?) {
     if (input.isNullOrBlank()) {
-        println("Please fill in the required fields")
+        println("isNullOrBlank")
+    }
+    if (input.isNullOrEmpty()) {
+        println("isNullOrEmpty")
     }
 }
+
