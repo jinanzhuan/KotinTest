@@ -1,7 +1,10 @@
-package com.edt.myapplication
+package com.edt.myapplication.ui.activity
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import com.edt.myapplication.BaseActivity
+import com.edt.myapplication.R
+import com.edt.myapplication.ui.ToolbarManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.find
 

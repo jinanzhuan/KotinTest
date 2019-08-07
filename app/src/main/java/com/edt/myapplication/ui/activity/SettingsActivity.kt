@@ -1,4 +1,6 @@
-package com.edt.myapplication
+package com.edt.myapplication.ui.activity
+
+import com.edt.myapplication.BaseActivity
 
 class SettingsActivity: BaseActivity() {
     override fun getLayoutId(): Int {

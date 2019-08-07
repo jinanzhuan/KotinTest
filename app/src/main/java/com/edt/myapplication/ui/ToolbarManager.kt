@@ -1,11 +1,14 @@
-package com.edt.myapplication
+package com.edt.myapplication.ui
 
 import android.support.v7.graphics.drawable.DrawerArrowDrawable
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import com.edt.myapplication.App
+import com.edt.myapplication.R
 import com.edt.myapplication.extensions.ctx
 import com.edt.myapplication.extensions.slideEnter
 import com.edt.myapplication.extensions.slideExit
+import com.edt.myapplication.ui.activity.SettingsActivity
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
