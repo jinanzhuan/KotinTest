@@ -4,11 +4,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import com.edt.myapplication.BaseActivity
 import com.edt.myapplication.R
+import com.edt.myapplication.domain.commands.RequestForecastCommand
+import com.edt.myapplication.extensions.DelegatesExt
 import com.edt.myapplication.ui.ToolbarManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.find
 
 class MainActivity : BaseActivity(), ToolbarManager {
+    private val zipCode: Long by DelegatesExt
+
     override val toolbar: Toolbar by lazy { find<Toolbar>(R.id.toolbar) }
 
     override fun getLayoutId(): Int {
@@ -36,8 +41,8 @@ class MainActivity : BaseActivity(), ToolbarManager {
         loadForecast()
     }
 
-    private fun loadForecast() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun loadForecast()  = launch {
+        RequestForecastCommand(zipCode)
     }
 
 }
