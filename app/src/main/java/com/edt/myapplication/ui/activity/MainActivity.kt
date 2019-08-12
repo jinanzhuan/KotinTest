@@ -7,12 +7,14 @@ import com.edt.myapplication.R
 import com.edt.myapplication.domain.commands.RequestForecastCommand
 import com.edt.myapplication.extensions.DelegatesExt
 import com.edt.myapplication.ui.ToolbarManager
+import com.edt.myapplication.ui.adpter.ForecastListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity(), ToolbarManager {
-    private val zipCode: Long by DelegatesExt
+    private val zipCode: Long by DelegatesExt.preference(this, SettingsActivity.ZIP_CODE, SettingsActivity.DEFAULT_ZIP)
 
     override val toolbar: Toolbar by lazy { find<Toolbar>(R.id.toolbar) }
 
@@ -42,7 +44,12 @@ class MainActivity : BaseActivity(), ToolbarManager {
     }
 
     private fun loadForecast()  = launch {
-        RequestForecastCommand(zipCode)
+        val result = RequestForecastCommand(zipCode).execute()
+        val adapter = ForecastListAdapter(result) {
+            startActivity<DetailActivity>(DetailActivity.ID to it.id, DetailActivity.CITY_NAME to result.city)
+        }
+        forecastList.adapter = adapter
+        toolbarTitle = "${result.city} (${result.country})"
     }
 
 }

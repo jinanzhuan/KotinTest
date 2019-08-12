@@ -5,7 +5,7 @@ import com.edt.myapplication.data.server.ForecastServer
 import com.edt.myapplication.domain.model.ForecastList
 import com.edt.myapplication.extensions.firstResult
 
-class ForecastProvider(private val sources: List<ForecastDataSource>) {
+class ForecastProvider(private val sources: List<ForecastDataSource> = ForecastProvider.SOURCE) {
     companion object {
         const val DAY_IN_MILLIS =1000 * 60 * 60 * 24
         val SOURCE by lazy { listOf(ForecastDb(), ForecastServer()) }
