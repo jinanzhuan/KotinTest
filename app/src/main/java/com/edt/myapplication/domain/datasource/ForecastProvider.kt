@@ -19,4 +19,6 @@ class ForecastProvider(private val sources: List<ForecastDataSource> = ForecastP
     private fun todayTimeSpan() = System.currentTimeMillis() / DAY_IN_MILLIS * DAY_IN_MILLIS
 
     private fun <T: Any> requestToSources(f: (ForecastDataSource) -> T?): T = sources.firstResult { f(it) }
+
+    fun requestForecast(id: Long) = requestToSources { it.requestDayForecast(id) }
 }
